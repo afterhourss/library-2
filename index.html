@@ -14,20 +14,16 @@
   </head>
   <body>
     <div class="container">
-      <p class="title">Library</p>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quae quas
-        quis pariatur fugiat enim facere atque nihil molestiae! Dolorem!
+      <div class="title-container">
+        <p class="title">Lib-rary.js</p>
+        <div class="title-side-box"></div>
       </div>
-
-      <form action="" id="myForm">
-        <input type="text" class="book-title" required />
-        <input type="text" class="book-author" required />
-        <input type="number" class="book-pages" required />
-        <input type="checkbox" class="book-read" />
-        <button type="submit" class="submit-btn">submit</button>
-      </form>
-
+      <p class="sub-title">
+        a library that can list the books you have read and will read here.
+        project for <strong>javascript</strong> practice
+        <em>The Odin Project</em>
+      </p>
+      <button class="add-book-btn">add book +</button>
       <table>
         <h2 class="empty-lib-para">oops, where did book go</h2>
         <tr class="table-head">
@@ -37,6 +33,36 @@
           <td width="10%">Read</td>
         </tr>
       </table>
+    </div>
+
+    <div class="container-2 display-none">
+      <div class="overlay"></div>
+      <form action="" id="myForm">
+        <h2>Add New Book</h2>
+        <input
+          type="text"
+          class="book-title input-form"
+          placeholder="Title"
+          required
+        />
+        <input
+          type="text"
+          class="book-author input-form"
+          placeholder="Author"
+          required
+        />
+        <input
+          type="number"
+          class="book-pages input-form"
+          placeholder="Pages"
+          required
+        />
+        <div class="inline">
+          <label for="chckbox">im already read that</label>
+          <input type="checkbox" id="chckbox" class="book-read" />
+        </div>
+        <button type="submit" class="submit-btn">submit</button>
+      </form>
     </div>
 
     <script src="script.js"></script>

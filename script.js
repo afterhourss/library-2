@@ -31,12 +31,16 @@ class Book {
 const btnSubmit = document.querySelector(".submit-btn");
 const empty = document.querySelector(".empty-lib-para");
 const tableHead = document.querySelector(".table-head");
+const addBookBtn = document.querySelector(".add-book-btn");
+const popupContainer = document.querySelector(".container-2");
+const popupOverlay = document.querySelector(".overlay");
 
 function getUserInput() {
   const title = document.querySelector(".book-title").value;
   const author = document.querySelector(".book-author").value;
   const pages = document.querySelector(".book-pages").value;
   const isRead = document.querySelector(".book-read").checked;
+
   return new Book(title, author, pages, isRead);
 }
 
@@ -111,6 +115,16 @@ function displayBook() {
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   addBook();
+  popupContainer.classList.toggle("display-none");
 });
 
 displayBook();
+
+//pop up toggle
+addBookBtn.addEventListener("click", () => {
+  popupContainer.classList.toggle("display-none");
+});
+
+popupOverlay.addEventListener("click", () => {
+  popupContainer.classList.toggle("display-none");
+});
