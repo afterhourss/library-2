@@ -12,14 +12,8 @@ const myLibrary = [
     isRead: false,
   },
   {
-    title: "test",
-    author: "test",
-    pages: 208,
-    isRead: false,
-  },
-  {
     title: "Fight Club",
-    author: "Chuck Palahniuk",
+    author: "Chuck Palahniukasdasdasdasdasdasdas",
     pages: 208,
     isRead: false,
   },
@@ -70,10 +64,9 @@ function refreshTable() {
 function emptyData() {
   if (myLibrary.length === 0) {
     empty.textContent = "oops~ where did book go?";
-    listBookContainer.classList.add("display-none");
+    console.log("test");
   } else if (myLibrary.length >= 1) {
     empty.textContent = "";
-    listBookContainer.classList.remove("display-none");
   }
 }
 
@@ -83,8 +76,8 @@ function toggleRead(item) {
 }
 
 function handleStringLength(stringVal) {
-  if (stringVal.length > 9) {
-    shortenString = stringVal.substring(0, 9).concat("...");
+  if (stringVal.length > 24) {
+    shortenString = stringVal.substring(0, 17).concat("...");
     return shortenString;
   } else {
     return stringVal;
@@ -114,10 +107,11 @@ function displayBook() {
     book.appendChild(readBtn);
     book.appendChild(removeBtn);
 
-    bookTitle.textContent = myLibrary[i].title;
+    bookTitle.textContent = handleStringLength(myLibrary[i].title);
     bookAuthor.textContent = handleStringLength(myLibrary[i].author);
     bookPages.textContent = myLibrary[i].pages;
-    readBtn.textContent = myLibrary[i].isRead === true ? "udah baca" : "belum";
+    readBtn.textContent =
+      myLibrary[i].isRead === true ? "already read" : "not read yet";
     removeBtn.textContent = "remove";
 
     readBtn.addEventListener("click", () => {
