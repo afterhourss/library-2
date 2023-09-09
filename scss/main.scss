@@ -7,7 +7,6 @@ body {
   font-family: "Poppins", sans-serif;
   font-family: "Roboto Mono", monospace;
   background-color: #474747;
-  color: #a0a0a0;
 }
 .container {
   width: 900px;
@@ -40,23 +39,36 @@ body {
   }
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  .table-head {
-    font-weight: 600;
-  }
-  tr {
-    border-bottom: 1px solid #5e5e5e;
-    height: 40px;
-  }
-}
+// list book
+.list-book-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 
-.table-btn {
-  cursor: pointer;
-  display: inline;
-  border: 0;
-  padding: 5px 8px;
+  .display-book {
+    width: 280px;
+    height: 200px;
+    background-color: #ccdee4;
+    border: 1px solid #000;
+    padding: 20px;
+    box-sizing: border-box;
+    .display-author {
+      font-size: 22px;
+    }
+    .display-title {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .display-pages {
+      font-weight: 700;
+    }
+    .read-btn,
+    .remove-btn {
+      border: 1px solid #000;
+      margin: 0 12px;
+      padding: 8px 12px;
+    }
+  }
 }
 
 .display-none {
