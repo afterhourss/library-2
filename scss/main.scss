@@ -44,6 +44,7 @@ body {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: 20px;
 
   .display-book {
     width: 280px;
@@ -53,10 +54,10 @@ body {
     padding: 20px;
     box-sizing: border-box;
     .display-author {
-      font-size: 22px;
+      font-size: 19px;
     }
     .display-title {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: bold;
     }
     .display-pages {
@@ -65,8 +66,9 @@ body {
     .read-btn,
     .remove-btn {
       border: 1px solid #000;
-      margin: 0 12px;
+      margin: 20px 10px 0 0;
       padding: 8px 12px;
+      cursor: pointer;
     }
   }
 }
@@ -106,6 +108,11 @@ body {
       width: 300px;
       height: 40px;
       margin: 15px auto;
+      background: transparent;
+      border: 1px solid #000;
+      color: #fff;
+      padding: 0 10px;
+      outline: none;
     }
     .inline {
       display: flex;
