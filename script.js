@@ -11,6 +11,18 @@ const myLibrary = [
     pages: 208,
     isRead: false,
   },
+  {
+    title: "test",
+    author: "test",
+    pages: 208,
+    isRead: false,
+  },
+  {
+    title: "Fight Club",
+    author: "Chuck Palahniuk",
+    pages: 208,
+    isRead: false,
+  },
 ];
 
 class Book {
@@ -30,10 +42,10 @@ class Book {
 //DOM
 const btnSubmit = document.querySelector(".submit-btn");
 const empty = document.querySelector(".empty-lib-para");
-const tableHead = document.querySelector(".table-head");
 const addBookBtn = document.querySelector(".add-book-btn");
 const popupContainer = document.querySelector(".container-2");
 const popupOverlay = document.querySelector(".overlay");
+const listBookContainer = document.querySelector(".list-book-container");
 
 function getUserInput() {
   const title = document.querySelector(".book-title").value;
@@ -51,20 +63,17 @@ function addBook() {
 }
 
 function refreshTable() {
-  const trList = document.querySelectorAll(".trArrData");
-  for (const tr of trList) {
-    tr.remove();
-  }
+  listBookContainer.innerHTML = "";
   emptyData();
 }
 
 function emptyData() {
   if (myLibrary.length === 0) {
     empty.textContent = "oops~ where did book go?";
-    tableHead.classList.add("display-none");
+    listBookContainer.classList.add("display-none");
   } else if (myLibrary.length >= 1) {
     empty.textContent = "";
-    tableHead.classList.remove("display-none");
+    listBookContainer.classList.remove("display-none");
   }
 }
 
@@ -77,28 +86,29 @@ function displayBook() {
   refreshTable();
 
   for (let i = 0; i < myLibrary.length; i++) {
-    const table = document.querySelector("table");
-    const tr = document.createElement("tr");
-    const tableTitle = document.createElement("td");
-    const tableAuthor = document.createElement("td");
-    const tablePages = document.createElement("td");
+    const book = document.createElement("div");
+    const bookTitle = document.createElement("p");
+    const bookAuthor = document.createElement("p");
+    const bookPages = document.createElement("p");
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
 
-    tr.classList.add("trArrData");
-    readBtn.classList.add("table-btn");
-    removeBtn.classList.add("table-btn");
+    book.classList.add("display-book");
+    bookTitle.classList.add("display-title");
+    bookAuthor.classList.add("display-author");
+    readBtn.classList.add("read-btn");
+    removeBtn.classList.add("remove-btn");
 
-    table.appendChild(tr);
-    tr.appendChild(tableTitle);
-    tr.appendChild(tableAuthor);
-    tr.appendChild(tablePages);
-    tr.appendChild(readBtn);
-    tr.appendChild(removeBtn);
+    listBookContainer.appendChild(book);
+    book.appendChild(bookTitle);
+    book.appendChild(bookAuthor);
+    book.appendChild(bookPages);
+    book.appendChild(readBtn);
+    book.appendChild(removeBtn);
 
-    tableTitle.textContent = myLibrary[i].title;
-    tableAuthor.textContent = myLibrary[i].author;
-    tablePages.textContent = myLibrary[i].pages;
+    bookTitle.textContent = myLibrary[i].title;
+    bookAuthor.textContent = myLibrary[i].author;
+    bookPages.textContent = myLibrary[i].pages;
     readBtn.textContent = myLibrary[i].isRead === true ? "udah baca" : "belum";
     removeBtn.textContent = "remove";
 
