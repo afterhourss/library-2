@@ -82,6 +82,14 @@ function toggleRead(item) {
   displayBook();
 }
 
+function handleStringLength(stringVal) {
+  if (stringVal.length > 9) {
+    shortenString = stringVal.substring(0, 9).concat("...");
+    return shortenString;
+  } else {
+    return stringVal;
+  }
+}
 function displayBook() {
   refreshTable();
 
@@ -107,7 +115,7 @@ function displayBook() {
     book.appendChild(removeBtn);
 
     bookTitle.textContent = myLibrary[i].title;
-    bookAuthor.textContent = myLibrary[i].author;
+    bookAuthor.textContent = handleStringLength(myLibrary[i].author);
     bookPages.textContent = myLibrary[i].pages;
     readBtn.textContent = myLibrary[i].isRead === true ? "udah baca" : "belum";
     removeBtn.textContent = "remove";
