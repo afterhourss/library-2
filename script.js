@@ -1,23 +1,41 @@
-const myLibrary = [
-  {
-    title: "A Game of Thrones",
-    author: "George R. R. Martin",
-    pages: 694,
-    isRead: true,
-  },
-  {
-    title: "Fight Club",
-    author: "Chuck Palahniuk",
-    pages: 208,
-    isRead: false,
-  },
-  {
-    title: "Fight Club",
-    author: "Chuck Palahniukasdasdasdasdasdasdas",
-    pages: 208,
-    isRead: false,
-  },
-];
+class Library {
+  constructor() {
+    //default books
+    this.books = [
+      {
+        title: "A Game of Thrones",
+        author: "George R. R. Martin",
+        pages: 694,
+        isRead: true,
+      },
+      {
+        title: "Fight Club",
+        author: "Chuck Palahniuk",
+        pages: 208,
+        isRead: false,
+      },
+    ];
+    console.log(this.books);
+  }
+  getBook() {
+    return this.books.map((book) => book.title);
+  }
+  removeBook(title) {
+    this.books = this.books.filter((book) => book.title !== title);
+  }
+  getLength() {
+    return this.books.length;
+  }
+  addBookToLibrary(newBook) {
+    if (!this.isInLibrary(newBook)) {
+      this.books.push(newBook);
+    }
+    return;
+  }
+  isInLibrary(newBook) {
+    return this.books.some((book) => book.title === newBook.title);
+  }
+}
 
 class Book {
   constructor(
@@ -33,6 +51,7 @@ class Book {
   }
 }
 
+let library = new Library();
 //DOM
 const btnSubmit = document.querySelector(".submit-btn");
 const empty = document.querySelector(".empty-lib-para");
@@ -52,8 +71,12 @@ function getUserInput() {
 
 function addBook() {
   const newBook = getUserInput();
-  myLibrary.push(newBook);
-  displayBook();
+  if (library.isInLibrary(newBook)) {
+    console.log("book already added");
+  } else {
+    library.addBookToLibrary(newBook);
+    displayBook();
+  }
 }
 
 function refreshTable() {
@@ -62,10 +85,9 @@ function refreshTable() {
 }
 
 function emptyData() {
-  if (myLibrary.length === 0) {
+  if (library.getLength() === 0) {
     empty.textContent = "oops~ where did book go?";
-    console.log("test");
-  } else if (myLibrary.length >= 1) {
+  } else if (library.getLength() >= 1) {
     empty.textContent = "";
   }
 }
@@ -86,13 +108,15 @@ function handleStringLength(stringVal) {
 function displayBook() {
   refreshTable();
 
-  for (let i = 0; i < myLibrary.length; i++) {
+  for (let i = 0; i < library.getLength(); i++) {
     const book = document.createElement("div");
     const bookTitle = document.createElement("p");
     const bookAuthor = document.createElement("p");
     const bookPages = document.createElement("p");
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
+
+    book.setAttribute("data-book-title", library.books[i].title);
 
     book.classList.add("display-book");
     bookTitle.classList.add("display-title");
@@ -107,18 +131,18 @@ function displayBook() {
     book.appendChild(readBtn);
     book.appendChild(removeBtn);
 
-    bookTitle.textContent = handleStringLength(myLibrary[i].title);
-    bookAuthor.textContent = handleStringLength(myLibrary[i].author);
-    bookPages.textContent = myLibrary[i].pages;
+    bookTitle.textContent = handleStringLength(library.books[i].title);
+    bookAuthor.textContent = handleStringLength(library.books[i].author);
+    bookPages.textContent = library.books[i].pages;
     readBtn.textContent =
-      myLibrary[i].isRead === true ? "already read" : "not read yet";
+      library.books[i].isRead === true ? "already read" : "not read yet";
     removeBtn.textContent = "remove";
 
     readBtn.addEventListener("click", () => {
-      toggleRead(myLibrary[i]);
+      toggleRead(library.books[i]);
     });
     removeBtn.addEventListener("click", () => {
-      myLibrary.splice(myLibrary.indexOf(myLibrary[i]), 1);
+      library.removeBook(book.dataset.bookTitle);
       displayBook();
     });
   }
